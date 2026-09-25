@@ -14,7 +14,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v7
       - name: Check the tag matches the package version
         run: |
           version=$(uv run --no-project python -c "exec(open('livekit/plugins/polyai/version.py').read()); print(__version__)")
