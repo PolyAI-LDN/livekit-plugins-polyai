@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "livekit-plugins-polyai"
+dynamic = ["version"]
+description = "PolyAI Dialog-RSN-1 realtime model for LiveKit Agents"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "PolyAI" }]
+keywords = ["livekit", "voice", "agents", "realtime", "polyai", "dialog-rsn-1"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = ["livekit-agents>=1.8.3,<2"]
+
+[project.urls]
+Source = "https://github.com/PolyAI-LDN/livekit-plugins-polyai"
+Issues = "https://github.com/PolyAI-LDN/livekit-plugins-polyai/issues"
+Changelog = "https://github.com/PolyAI-LDN/livekit-plugins-polyai/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.11",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.6",
+]
+examples = [
+    "livekit-agents[elevenlabs]>=1.8.3,<2",
+    "python-dotenv>=1.0",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.hatch.version]
+path = "livekit/plugins/polyai/version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["livekit"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/livekit", "/tests", "README.md", "CHANGELOG.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+strict = true
+packages = ["livekit.plugins.polyai"]
+explicit_package_bases = true
+namespace_packages = true

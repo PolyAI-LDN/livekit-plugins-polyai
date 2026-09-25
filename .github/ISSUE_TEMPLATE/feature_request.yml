@@ -1,0 +1,20 @@
+name: Feature request
+description: Suggest something the plugin should support
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you're trying to do
+      description: The agent you're building and where the plugin gets in the way.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you'd like
+      description: The option, event or behavior you want. Include a code sketch if you have one.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Workarounds you've tried

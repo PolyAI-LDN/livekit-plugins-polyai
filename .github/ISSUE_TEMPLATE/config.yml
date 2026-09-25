@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: LiveKit Agents questions
+    url: https://docs.livekit.io/agents/
+    about: For questions about AgentSession, rooms, TTS plugins or deployment, start with the LiveKit docs.

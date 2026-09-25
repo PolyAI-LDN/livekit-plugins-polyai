@@ -1,0 +1,56 @@
+name: Bug report
+description: Something in the plugin doesn't work as documented
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Remove API keys, phone numbers and caller audio from anything you paste.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: The smallest agent or script that shows the problem.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: |
+        Run with `LK_POLYAI_DEBUG=1` to log every event sent and received, then paste the part around the failure.
+      render: text
+  - type: input
+    id: plugin-version
+    attributes:
+      label: livekit-plugins-polyai version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: agents-version
+    attributes:
+      label: livekit-agents version
+      placeholder: "1.8.3"
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      placeholder: "3.12"
+  - type: dropdown
+    id: region
+    attributes:
+      label: Dialog-RSN-1 host
+      options:
+        - api.us.poly.ai
+        - Other (say which in the description)

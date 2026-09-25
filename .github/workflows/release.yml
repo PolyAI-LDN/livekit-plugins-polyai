@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      # PyPI trusted publishing: no API token stored in the repo
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Check the tag matches the package version
+        run: |
+          version=$(uv run --no-project python -c "exec(open('livekit/plugins/polyai/version.py').read()); print(__version__)")
+          test "v$version" = "$GITHUB_REF_NAME"
+      - run: uv build
+      - run: uv publish
