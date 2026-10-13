@@ -112,7 +112,7 @@ class RealtimeModel(llm.RealtimeModel):
     Args:
         api_key: A Dialog-RSN-1 workspace API key. Defaults to ``DIALOGUE_API_KEY``.
         base_url: The API base URL. Defaults to ``DIALOGUE_BASE_URL``, then
-            ``https://api.us.poly.ai/v1``.
+            ``https://api.studio.poly.ai/v1``.
         turn_detection: Turn detection options. By default the model replies as soon as it
             judges the caller's turn over.
         max_output_tokens: Cap on tokens per reply, reasoning included. A low cap can cut
