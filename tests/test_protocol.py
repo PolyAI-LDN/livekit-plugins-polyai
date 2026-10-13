@@ -35,8 +35,8 @@ async def look_up_reservation(confirmation_code: str, last_name: str = "") -> st
 @pytest.mark.parametrize(
     ("base_url", "expected"),
     [
-        ("https://api.us.poly.ai/v1", "wss://api.us.poly.ai/v1/realtime"),
-        ("https://api.us.poly.ai/v1/", "wss://api.us.poly.ai/v1/realtime"),
+        ("https://api.studio.poly.ai/v1", "wss://api.studio.poly.ai/v1/realtime"),
+        ("https://api.studio.poly.ai/v1/", "wss://api.studio.poly.ai/v1/realtime"),
         ("http://127.0.0.1:8080/v1", "ws://127.0.0.1:8080/v1/realtime"),
         ("wss://example.test/v1/realtime", "wss://example.test/v1/realtime"),
         ("https://example.test/v1?session_id=abc", "wss://example.test/v1/realtime?session_id=abc"),

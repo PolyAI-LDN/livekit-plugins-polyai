@@ -52,5 +52,8 @@ body:
     attributes:
       label: Dialog-RSN-1 host
       options:
+        - api.studio.poly.ai (self-serve)
         - api.us.poly.ai
+        - api.eu.poly.ai
+        - api.uk.poly.ai
         - Other (say which in the description)

@@ -16,7 +16,7 @@ from livekit.agents import llm
 
 from ..log import logger
 
-DEFAULT_BASE_URL = "https://api.us.poly.ai/v1"
+DEFAULT_BASE_URL = "https://api.studio.poly.ai/v1"
 MODEL = "dialog-rsn-1"
 
 SAMPLE_RATE = 24000
