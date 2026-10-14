@@ -18,7 +18,7 @@ With uv:
 uv add "livekit-plugins-polyai @ git+https://github.com/PolyAI-LDN/livekit-plugins-polyai"
 ```
 
-You need Python 3.10 or later, `livekit-agents` 1.8.3 or later, and a Dialog-RSN-1 workspace API key from Agent Studio. Set the key as `DIALOG_API_KEY`.
+You need Python 3.10 or later, `livekit-agents` 1.8.3 or later, and a Dialog-RSN-1 API key from [studio.poly.ai](https://studio.poly.ai): sign up or log in, then create one in the **API Keys** tab. Set the key as `DIALOG_API_KEY`.
 
 ## Quick start
 
@@ -97,7 +97,7 @@ Each `RealtimeSession` also emits the raw events as dicts, as `polyai_server_eve
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | `Dialog-RSN-1 needs an API key` | `DIALOG_API_KEY` isn't set | Set it, or pass `api_key=` |
-| `Dialog-RSN-1 refused the connection (401)` | The key is wrong or revoked | Create a new workspace API key in Agent Studio |
+| `Dialog-RSN-1 refused the connection (401)` | The key is wrong or revoked | Create a key in the **API Keys** tab at [studio.poly.ai](https://studio.poly.ai) |
 | `Dialog-RSN-1 returned an error: [unknown_parameter] ... (param: session.x)` | A `session.update` carried a field the service doesn't accept, so none of it applied | Open an issue with the `param` value: the plugin should never send one |
 | The agent never speaks | No TTS in the `AgentSession` | Add a TTS plugin |
 | The agent keeps interrupting itself | The microphone hears the speakers | Use headphones, or echo cancellation on the client |
