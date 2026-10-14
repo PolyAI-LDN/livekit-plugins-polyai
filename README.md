@@ -55,7 +55,7 @@ The session has no `stt` and no `turn_handling`. Dialog-RSN-1 hears the room's a
 ```python
 polyai.realtime.RealtimeModel(
     api_key=None,  # defaults to DIALOG_API_KEY
-    base_url=NOT_GIVEN,  # defaults to DIALOGUE_BASE_URL, then https://api.studio.poly.ai/v1
+    base_url=NOT_GIVEN,  # defaults to DIALOG_REALTIME_URL, then wss://api.studio.poly.ai/v1/realtime
     turn_detection=NOT_GIVEN,  # polyai.realtime.TurnDetection(create_response=True)
     max_output_tokens=NOT_GIVEN,  # cap per reply, reasoning included
     response_language=NOT_GIVEN,  # e.g. "es-ES"
@@ -80,7 +80,7 @@ To make the agent more or less patient before it replies, say so in the instruct
 | Barge-in | Supported. Dialog-RSN-1 stops generating when the caller talks over it, and the plugin rewrites the interrupted reply to the words the caller heard. |
 | User transcripts | Supported, sent with each turn. |
 | `update_instructions`, `update_tools`, chat context edits | Supported mid-call. |
-| Audio output | Not supported. Add a TTS plugin. |
+| Audio output | Not used. The plugin asks Dialog-RSN-1 for text, so add a TTS plugin. |
 | `generate_reply(instructions=...)` | Ignored, with a warning. Put the behavior in the agent's instructions. |
 | `tool_choice` | `"auto"` only. |
 | LiveKit turn detector, VAD, endpointing options | Not used. Dialog-RSN-1 decides when the turn ends. |

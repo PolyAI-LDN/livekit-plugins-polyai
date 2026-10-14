@@ -9,9 +9,10 @@ around:
 
 - The session schema is narrow, and an update with any field outside it is rejected whole.
   The session only ever sends fields the service accepts (see ``protocol.session_config``).
-- ``response.created`` carries no metadata, so each ``generate_reply`` is matched to the
-  response that answers it by order. The service answers every ``response.create`` as soon as
-  it arrives, with ``response.created`` or an error naming it.
+- Each ``generate_reply`` is matched to the response that answers it by order, not by the
+  ``response.created`` metadata echo, which the service didn't send at first. The service
+  answers every ``response.create`` as soon as it arrives, with ``response.created`` or an
+  error naming it.
 - The service appends every item it's given to the end of the conversation, whatever
   ``previous_item_id`` says, so the local mirror of the conversation does the same.
 """
@@ -111,8 +112,8 @@ class RealtimeModel(llm.RealtimeModel):
 
     Args:
         api_key: A Dialog-RSN-1 workspace API key. Defaults to ``DIALOG_API_KEY``.
-        base_url: The API base URL. Defaults to ``DIALOGUE_BASE_URL``, then
-            ``https://api.studio.poly.ai/v1``.
+        base_url: The API base URL, or the full realtime URL. Defaults to
+            ``DIALOG_REALTIME_URL``, then ``wss://api.studio.poly.ai/v1/realtime``.
         turn_detection: Turn detection options. By default the model replies as soon as it
             judges the caller's turn over.
         max_output_tokens: Cap on tokens per reply, reasoning included. A low cap can cut
@@ -172,7 +173,7 @@ class RealtimeModel(llm.RealtimeModel):
             api_key=api_key,
             base_url=base_url
             if is_given(base_url)
-            else os.environ.get("DIALOGUE_BASE_URL") or protocol.DEFAULT_BASE_URL,
+            else os.environ.get("DIALOG_REALTIME_URL") or protocol.DEFAULT_BASE_URL,
             turn_detection=turn_detection if is_given(turn_detection) else TurnDetection(),
             max_output_tokens=None
             if isinstance(max_output_tokens, NotGiven)
