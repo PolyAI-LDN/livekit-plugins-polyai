@@ -18,7 +18,7 @@ With uv:
 uv add "livekit-plugins-polyai @ git+https://github.com/PolyAI-LDN/livekit-plugins-polyai"
 ```
 
-You need Python 3.10 or later, `livekit-agents` 1.8.3 or later, and a Dialog-RSN-1 API key from [studio.poly.ai](https://studio.poly.ai): sign up or log in, then create one in the **API Keys** tab. Set the key as `DIALOG_API_KEY`.
+You need Python 3.10 or later, `livekit-agents` 1.8.3 or later, and a Dialog-RSN-1 API key from [studio.poly.ai](https://studio.poly.ai): sign up or log in, then create one in the **API Keys** tab. Set the key as `POLY_API_KEY`.
 
 ## Quick start
 
@@ -54,7 +54,7 @@ The session has no `stt` and no `turn_handling`. Dialog-RSN-1 hears the room's a
 
 ```python
 polyai.realtime.RealtimeModel(
-    api_key=None,  # defaults to DIALOG_API_KEY
+    api_key=None,  # defaults to POLY_API_KEY
     base_url=NOT_GIVEN,  # defaults to DIALOG_REALTIME_URL, then wss://api.studio.poly.ai/v1/realtime
     turn_detection=NOT_GIVEN,  # polyai.realtime.TurnDetection(create_response=True)
     max_output_tokens=NOT_GIVEN,  # cap per reply, reasoning included
@@ -96,7 +96,7 @@ Each `RealtimeSession` also emits the raw events as dicts, as `polyai_server_eve
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| `Dialog-RSN-1 needs an API key` | `DIALOG_API_KEY` isn't set | Set it, or pass `api_key=` |
+| `Dialog-RSN-1 needs an API key` | `POLY_API_KEY` isn't set | Set it, or pass `api_key=` |
 | `Dialog-RSN-1 refused the connection (401)` | The key is wrong or revoked | Create a key in the **API Keys** tab at [studio.poly.ai](https://studio.poly.ai) |
 | `Dialog-RSN-1 returned an error: [unknown_parameter] ... (param: session.x)` | A `session.update` carried a field the service doesn't accept, so none of it applied | Open an issue with the `param` value: the plugin should never send one |
 | The agent never speaks | No TTS in the `AgentSession` | Add a TTS plugin |

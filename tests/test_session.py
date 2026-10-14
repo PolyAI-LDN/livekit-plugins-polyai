@@ -27,8 +27,8 @@ async def collect(gen: llm.GenerationCreatedEvent) -> tuple[str, list[llm.Functi
 
 
 def test_missing_api_key(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.delenv("DIALOG_API_KEY", raising=False)
-    with pytest.raises(ValueError, match="DIALOG_API_KEY"):
+    monkeypatch.delenv("POLY_API_KEY", raising=False)
+    with pytest.raises(ValueError, match="POLY_API_KEY"):
         polyai.realtime.RealtimeModel()
 
 
