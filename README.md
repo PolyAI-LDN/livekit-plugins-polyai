@@ -81,7 +81,7 @@ To make the agent more or less patient before it replies, say so in the instruct
 | User transcripts | Supported, sent with each turn. |
 | `update_instructions`, `update_tools`, chat context edits | Supported mid-call. |
 | Audio output | Not used. The plugin asks Dialog-RSN-1 for text, so add a TTS plugin. |
-| `generate_reply(instructions=...)` | Ignored, with a warning. Put the behavior in the agent's instructions. |
+| `generate_reply(instructions=...)` | Not sent, with a warning. Dialog-RSN-1 honors per-response instructions, but the plugin doesn't pass them yet. Put the behavior in the agent's instructions. |
 | `tool_choice` | `"auto"` only. |
 | LiveKit turn detector, VAD, endpointing options | Not used. Dialog-RSN-1 decides when the turn ends. |
 | Images and video | Dropped, with a warning. |
@@ -104,7 +104,7 @@ Each `RealtimeSession` also emits the raw events as dicts, as `polyai_server_eve
 
 ## Known limitations
 
-- **Playback reports.** Dialog-RSN-1 accepts `poly.output_audio.*` events that tell it what the caller has heard. With them, it checks whether the caller's speech during playback is a real interruption, or just "mm-hm", before it stops. The plugin doesn't send them yet. While a reply is still generating, Dialog-RSN-1 makes that check anyway. Once it has finished generating, any caller speech interrupts playback.
+- **Playback reports.** Dialog-RSN-1 accepts `poly.output_audio.*` events that tell it what the caller has heard. With them, it checks whether the caller's speech during playback is a real interruption, or just "mm-hm", before it stops. The plugin doesn't send them yet, so Dialog-RSN-1 estimates playback instead. It assumes a typical speaking rate of 15 characters a second from the reply's first words, makes the same check for as long as it thinks the reply is playing, and on a barge-in cuts the reply in history back to the words the caller likely heard. Reports would replace that guess with real positions.
 - **Reconnection.** The service can't resume a session. If the connection drops, the plugin opens a new one and replays the instructions, tools and conversation. The service closes a connection after 300 seconds with no client events, which happens only when no audio is flowing.
 
 ## Contributing
