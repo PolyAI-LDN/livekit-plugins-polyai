@@ -80,7 +80,7 @@ To make the agent more or less patient before it replies, say so in the instruct
 | Barge-in | Supported. Dialog-RSN-1 stops generating when the caller talks over it, and the plugin rewrites the interrupted reply to the words the caller heard. |
 | User transcripts | Supported, sent with each turn. |
 | `update_instructions`, `update_tools`, chat context edits | Supported mid-call. |
-| Audio output | Not supported. Add a TTS plugin. |
+| Audio output | Not used. The plugin asks Dialog-RSN-1 for text, so add a TTS plugin. |
 | `generate_reply(instructions=...)` | Ignored, with a warning. Put the behavior in the agent's instructions. |
 | `tool_choice` | `"auto"` only. |
 | LiveKit turn detector, VAD, endpointing options | Not used. Dialog-RSN-1 decides when the turn ends. |

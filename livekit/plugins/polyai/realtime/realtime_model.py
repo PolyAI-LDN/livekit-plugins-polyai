@@ -9,9 +9,10 @@ around:
 
 - The session schema is narrow, and an update with any field outside it is rejected whole.
   The session only ever sends fields the service accepts (see ``protocol.session_config``).
-- ``response.created`` carries no metadata, so each ``generate_reply`` is matched to the
-  response that answers it by order. The service answers every ``response.create`` as soon as
-  it arrives, with ``response.created`` or an error naming it.
+- Each ``generate_reply`` is matched to the response that answers it by order, not by the
+  ``response.created`` metadata echo, which the service didn't send at first. The service
+  answers every ``response.create`` as soon as it arrives, with ``response.created`` or an
+  error naming it.
 - The service appends every item it's given to the end of the conversation, whatever
   ``previous_item_id`` says, so the local mirror of the conversation does the same.
 """
