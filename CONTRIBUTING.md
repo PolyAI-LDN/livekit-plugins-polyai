@@ -40,7 +40,7 @@ uv run --isolated --python 3.10 --resolution lowest-direct --group dev pytest
 Unit tests can't catch a field the service rejects, so test protocol changes against Dialog-RSN-1 too:
 
 ```bash
-cp .env.example .env              # add DIALOGUE_API_KEY and ELEVEN_API_KEY
+cp .env.example .env              # add DIALOG_API_KEY and ELEVEN_API_KEY
 uv sync --group examples
 uv run lk agent console examples/basic_agent.py --text
 ```

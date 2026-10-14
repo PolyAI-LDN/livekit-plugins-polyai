@@ -1,7 +1,7 @@
 """A minimal voice agent on Dialog-RSN-1, with one tool.
 
     uv sync --group examples
-    cp .env.example .env               # add DIALOGUE_API_KEY and ELEVEN_API_KEY
+    cp .env.example .env               # add DIALOG_API_KEY and ELEVEN_API_KEY
     uv run lk agent console examples/basic_agent.py
 
 Or run it against a LiveKit server with `uv run examples/basic_agent.py dev`.

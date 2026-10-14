@@ -110,7 +110,7 @@ class RealtimeModel(llm.RealtimeModel):
     handling. Dialog-RSN-1 does both.
 
     Args:
-        api_key: A Dialog-RSN-1 workspace API key. Defaults to ``DIALOGUE_API_KEY``.
+        api_key: A Dialog-RSN-1 workspace API key. Defaults to ``DIALOG_API_KEY``.
         base_url: The API base URL. Defaults to ``DIALOGUE_BASE_URL``, then
             ``https://api.studio.poly.ai/v1``.
         turn_detection: Turn detection options. By default the model replies as soon as it
@@ -161,10 +161,10 @@ class RealtimeModel(llm.RealtimeModel):
             )
         )
 
-        api_key = api_key or os.environ.get("DIALOGUE_API_KEY")
+        api_key = api_key or os.environ.get("DIALOG_API_KEY")
         if not api_key:
             raise ValueError(
-                "Dialog-RSN-1 needs an API key. Pass api_key, or set DIALOGUE_API_KEY to a "
+                "Dialog-RSN-1 needs an API key. Pass api_key, or set DIALOG_API_KEY to a "
                 "workspace API key from Agent Studio."
             )
 
@@ -669,7 +669,7 @@ class RealtimeSession(
         except aiohttp.WSServerHandshakeError as e:
             raise APIStatusError(
                 f"Dialog-RSN-1 refused the connection ({e.status})"
-                + (": check DIALOGUE_API_KEY" if e.status in (401, 403) else ""),
+                + (": check DIALOG_API_KEY" if e.status in (401, 403) else ""),
                 status_code=e.status,
                 retryable=e.status >= 500 or e.status == 429,
             ) from e
