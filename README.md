@@ -55,7 +55,7 @@ The session has no `stt` and no `turn_handling`. Dialog-RSN-1 hears the room's a
 ```python
 polyai.realtime.RealtimeModel(
     api_key=None,  # defaults to DIALOG_API_KEY
-    base_url=NOT_GIVEN,  # defaults to DIALOGUE_BASE_URL, then https://api.studio.poly.ai/v1
+    base_url=NOT_GIVEN,  # defaults to DIALOG_REALTIME_URL, then wss://api.studio.poly.ai/v1/realtime
     turn_detection=NOT_GIVEN,  # polyai.realtime.TurnDetection(create_response=True)
     max_output_tokens=NOT_GIVEN,  # cap per reply, reasoning included
     response_language=NOT_GIVEN,  # e.g. "es-ES"
