@@ -2,7 +2,7 @@
 
 Use PolyAI's Dialog-RSN-1 as the model in a [LiveKit Agents](https://docs.livekit.io/agents/) voice agent.
 
-Dialog-RSN-1 takes the caller's audio, decides when they've finished speaking, and streams the reply as text. In an `AgentSession` it replaces three parts of a standard pipeline: the speech-to-text plugin, the turn detector and the LLM. You add any LiveKit TTS plugin to speak the replies.
+Dialog-RSN-1 takes the caller's audio, decides when they've finished speaking, and, through this plugin, streams the reply as text. In an `AgentSession` it replaces three parts of a standard pipeline: the speech-to-text plugin, the turn detector and the LLM. You add any LiveKit TTS plugin to speak the replies.
 
 ## Install
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
 The session has no `stt` and no `turn_handling`. Dialog-RSN-1 hears the room's audio directly and judges each pause in the context of the conversation. LiveKit still shows the caller's transcript, because Dialog-RSN-1 sends it with each turn.
 
-[`examples/basic_agent.py`](examples/basic_agent.py) is a runnable version with a tool. For a full walkthrough, see the companion repo [PolyAI-LDN/dialog-rsn-1-livekit](https://github.com/PolyAI-LDN/dialog-rsn-1-livekit): a hotel front desk with two tools, barge-in and a scripted test caller.
+[`examples/basic_agent.py`](examples/basic_agent.py) is a runnable version with a tool. For a full walkthrough, see the companion repo [PolyAI-LDN/dialog-rsn-1-livekit](https://github.com/PolyAI-LDN/dialog-rsn-1-livekit): a hotel front desk with two tools, barge-in and a scripted test caller. The [LiveKit guide](https://docs.poly.ai/dialog-rsn-1/guides/livekit) explains it.
 
 ## Options
 
@@ -80,7 +80,7 @@ To make the agent more or less patient before it replies, say so in the instruct
 | Barge-in | Supported. Dialog-RSN-1 stops generating when the caller talks over it, and the plugin rewrites the interrupted reply to the words the caller heard. |
 | User transcripts | Supported, sent with each turn. |
 | `update_instructions`, `update_tools`, chat context edits | Supported mid-call. |
-| Audio output | Not used. The plugin asks Dialog-RSN-1 for text, so add a TTS plugin. |
+| Audio output | Not used. The plugin asks Dialog-RSN-1 for text, so add a TTS plugin. A plain Dialog-RSN-1 session speaks each reply itself by default. |
 | `generate_reply(instructions=...)` | Not sent, with a warning. Dialog-RSN-1 honors per-response instructions, but the plugin doesn't pass them yet. Put the behavior in the agent's instructions. |
 | `tool_choice` | `"auto"` only. |
 | LiveKit turn detector, VAD, endpointing options | Not used. Dialog-RSN-1 decides when the turn ends. |
