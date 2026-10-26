@@ -1,5 +1,8 @@
 # livekit-plugins-polyai
 
+> [!IMPORTANT]
+> This plugin is retired and no longer maintained. Dialog-RSN-1 now works with LiveKit's own OpenAI realtime plugin: point `openai.realtime.RealtimeModel` at Dialog-RSN-1's URL and key, with `modalities=["text"]`. Follow the [LiveKit guide](https://docs.poly.ai/dialog-rsn-1/guides/livekit), or see the [example agent](https://github.com/PolyAI-LDN/dialog-rsn-1-livekit).
+
 Use PolyAI's Dialog-RSN-1 as the model in a [LiveKit Agents](https://docs.livekit.io/agents/) voice agent.
 
 Dialog-RSN-1 takes the caller's audio, decides when they've finished speaking, and streams the reply as text. In an `AgentSession` it replaces three parts of a standard pipeline: the speech-to-text plugin, the turn detector and the LLM. You add any LiveKit TTS plugin to speak the replies.
